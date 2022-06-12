@@ -8,18 +8,31 @@ export interface WeatherResponse {
 }
 
 export interface WeatherData {
-  degrees: number;
-  humidity: number;
-  temp_min: number;
-  cloudiness: number;
   temp: number;
-  city: string;
-  pressure: number;
 
-  name: any;
+  temp_min: number;
+  pressure: number;
+  humidity: number;
+
+  city: string;
+}
+
+export interface Weather {
+  weather: {
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }[];
+  main: WeatherData;
 }
 
 export interface ImageData {
   id: number;
-  largeImageURL: string;
+  url: string;
+  src: {
+    original: string;
+    small: string;
+    alt: string;
+  };
 }

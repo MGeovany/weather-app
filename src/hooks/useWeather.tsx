@@ -1,24 +1,32 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { WeatherData } from "../types/Types";
+import { Weather } from "../types/Types";
 
 export const useWeather = (location: string) => {
   let urlWeather = `https://api.openweathermap.org/data/2.5/weather?appid=0b1d8dc54b4fbddf609cade05ca3f715&q=${location}&units=metric`;
-  const [dataw, setDataw] = useState<WeatherData>({
-    degrees: 0,
-    humidity: 0,
-    temp_min: 0,
-    cloudiness: 0,
-    temp: 0,
-    name: "",
-    city: "",
-    pressure: 0,
+  const [dataw, setDataw] = useState<Weather>({
+    weather: [
+      {
+        id: 0,
+        main: "",
+        description: "",
+        icon: "",
+      },
+    ],
+
+    main: {
+      temp: 0,
+      pressure: 0,
+      humidity: 0,
+      temp_min: 0,
+      city: "",
+    },
   });
 
   const getWeather = async () => {
     try {
       const response = await axios.get(urlWeather);
-      setDataw(response.data.main);
+      setDataw(response.data);
     } catch (err) {
       console.log(err);
     }

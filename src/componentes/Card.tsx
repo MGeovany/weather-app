@@ -1,41 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CloudIcon from "../svg/CloudIcon";
 import LocationIcon from "../svg/LocationIcon";
 import NubosityIcon from "../svg/NubosityIcon";
 import TempIcon from "../svg/TempIcon";
 import { Icons } from "./Icons";
 import { useWeather } from "../hooks/useWeather";
-import { useImage } from "../hooks/useImage";
-import { Cityimg } from "./Cityimg";
+import useImage from "../hooks/useImage";
 
 export const Card = (city: any) => {
+  const { image } = useImage(city.city); // api images from pexel */
   const { dataw } = useWeather(city.city);
 
-  const { image } = useImage(city.city);
-
-  console.log("image", image);
-  const img =
-    "https://images.pexels.com/photos/12365569/pexels-photo-12365569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-
-  let bgimg = {
-    backgroundImage: "",
+  const bgimg = {
+    backgroundImage: `url(${image.src.original})`,
   };
-  useEffect(() => {
-    let src = image.largeImageURL && img;
-    const bgimg = {
-      backgroundImage: `url(${src})`,
-    };
-
-
-  }, [image]);
 
   return (
     <div className="card">
-      <Cityimg bgimg={props}/>
       <div className="card-icon">
-        <Icons />
+        <Icons props={dataw.weather[0].description} />
       </div>
-      <div className="card-temp">{Math.round(dataw.temp)} °C</div>
+      <div className="card-temp">{Math.round(dataw.main.temp)} °C</div>
       <div className="card-city">
         <LocationIcon width={20} height={20} />
         {city.city}
@@ -47,7 +32,7 @@ export const Card = (city: any) => {
               <NubosityIcon width={31} height={56} fill={"#ffffff"} />
             </div>
             <div className="card-info">
-              {dataw.humidity}%<div className="card-info">Humedad</div>
+              {dataw.main.humidity}%<div className="card-info">Humedad</div>
             </div>
           </div>
           <div className="card-desc-icons">
@@ -55,7 +40,7 @@ export const Card = (city: any) => {
               <TempIcon width={40} height={32} fill={"#ffffff"} />
             </div>
             <div className="card-info">
-              {Math.round(dataw.temp_min)} °C
+              {Math.round(dataw.main.temp_min)} °C
               <div className="card-info">Temp. Minima</div>
             </div>
           </div>
@@ -64,7 +49,7 @@ export const Card = (city: any) => {
               <CloudIcon width={30} height={30} fill={"#ffffff"} />
             </div>
             <div className="card-info">
-              {dataw.pressure} hPa
+              {dataw.main.pressure} hPa
               <div className="card-info">Pression</div>
             </div>
           </div>
