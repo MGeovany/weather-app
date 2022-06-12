@@ -1,80 +1,38 @@
-import { useEffect, useRef, useState } from "react";
-import { conexionAPI } from "../api/connectionApi";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { WeatherData } from "../types/Types";
 
-export const useWeather = () => {
-
-  /*
-  const [weather, setWeather] = useState<WeatherData[]>([]);
+export const useWeather = (location: string) => {
+  let urlWeather = `https://api.openweathermap.org/data/2.5/weather?appid=0b1d8dc54b4fbddf609cade05ca3f715&q=${location}&units=metric`;
+  const [dataw, setDataw] = useState<WeatherData>({
+    degrees: 0,
+    humidity: 0,
+    temp_min: 0,
+    cloudiness: 0,
+    temp: 0,
+    name: "",
+    city: "",
+    pressure: 0,
+  });
 
   const getWeather = async () => {
-    conexionAPI
-      .get("/users")
-      .then((res) => {
-        console.log("respuesta en then");
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-    
     try {
-      const respuesta = await conexionAPI.get<UsersResponse>("/users", {
-        params: {
-          page: indice.current, //page
-        },
-      });
-
-      //Forma erronea de asignar un valor al estado
-      //const usuarios = respuesta.data.data;
-
-      //Forma correcta de establecer valores al estado
-      setUsuarios(respuesta.data.data);
-      setPages(respuesta.data.total_pages);
+      const response = await axios.get(urlWeather);
+      setDataw(response.data.main);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const createUsuario = async (usuario: FormUsuario) => {
-    try {
-      const respuesta = await conexionAPI.post<CreateUserResponse>(
-        "/users",
-        usuario
-      );
-      return respuesta.data.id;
-    } catch (err) {
-      return "";
-      console.log(err);
-    }
-  };
-
-  const irAtras = () => {
-    console.log("Ir Atras");
-    if (indice.current > 1) {
-      indice.current--;
-      getUsuarios();
-    } else alert("Ya no se puede ir atrás");
-  };
-
-  const irAdelante = () => {
-    console.log("Ir Adelante");
-    if (indice.current < pages) {
-      indice.current++;
-      getUsuarios();
-    } else alert("Ya no se puede ir adelante");
-  };
-
-  //Hook de useEffect se ejecuta al inicio cuando carga el componente
   useEffect(() => {
-    console.log("Iniciando hook useUsuarios");
-    getUsuarios();
-  }, []);
+    getWeather();
 
-  //es para exponer estas funciones o datos a los componentes
+    setTimeout(() => {
+      getWeather();
+    }, 60000);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return {
-    usuarios,
-    createUsuario,
-    irAtras,
-    irAdelante,
+    dataw,
   };
-  */
 };

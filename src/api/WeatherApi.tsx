@@ -3,6 +3,7 @@ import { Card } from "../componentes/Card";
 import { Home } from "../componentes/Home";
 
 const WeatherApi = () => {
+  /*
   let urlWeather =
     "http://api.openweathermap.org/data/2.5/weather?appid=0b1d8dc54b4fbddf609cade05ca3f715";
   const cityUrl = "&q=";
@@ -42,6 +43,7 @@ const WeatherApi = () => {
       <Card weather={weather} forecast={forecast} showForecast={showForecast} />
     </React.Fragment>
   );
+  */
 };
 
 export default WeatherApi;

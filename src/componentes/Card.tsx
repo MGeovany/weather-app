@@ -1,26 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CloudIcon from "../svg/CloudIcon";
 import LocationIcon from "../svg/LocationIcon";
 import NubosityIcon from "../svg/NubosityIcon";
 import TempIcon from "../svg/TempIcon";
 import { Icons } from "./Icons";
+import { useWeather } from "../hooks/useWeather";
+import { useImage } from "../hooks/useImage";
+import { Cityimg } from "./Cityimg";
 
-export const Card = ({ weather, forecast, showForecast }: any) => {
+export const Card = (city: any) => {
+  const { dataw } = useWeather(city.city);
+
+  const { image } = useImage(city.city);
+
+  console.log("image", image);
   const img =
     "https://images.pexels.com/photos/12365569/pexels-photo-12365569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-  const bgimg = {
-    backgroundImage: `url(${img})`,
+
+  let bgimg = {
+    backgroundImage: "",
   };
+  useEffect(() => {
+    let src = image.largeImageURL && img;
+    const bgimg = {
+      backgroundImage: `url(${src})`,
+    };
+
+
+  }, [image]);
 
   return (
     <div className="card">
+      <Cityimg bgimg={props}/>
       <div className="card-icon">
         <Icons />
       </div>
-      <div className="card-temp">22 C</div>
+      <div className="card-temp">{Math.round(dataw.temp)} °C</div>
       <div className="card-city">
         <LocationIcon width={20} height={20} />
-        San Pedro Sula
+        {city.city}
       </div>
       <div className="card-img" style={bgimg}>
         <div className="card-desc">
@@ -29,8 +47,7 @@ export const Card = ({ weather, forecast, showForecast }: any) => {
               <NubosityIcon width={31} height={56} fill={"#ffffff"} />
             </div>
             <div className="card-info">
-              17%
-              <div className="card-info">Humedad</div>
+              {dataw.humidity}%<div className="card-info">Humedad</div>
             </div>
           </div>
           <div className="card-desc-icons">
@@ -38,7 +55,8 @@ export const Card = ({ weather, forecast, showForecast }: any) => {
               <TempIcon width={40} height={32} fill={"#ffffff"} />
             </div>
             <div className="card-info">
-              -5 C<div className="card-info">Temp. Minima</div>
+              {Math.round(dataw.temp_min)} °C
+              <div className="card-info">Temp. Minima</div>
             </div>
           </div>
           <div className="card-desc-icons">
@@ -46,8 +64,8 @@ export const Card = ({ weather, forecast, showForecast }: any) => {
               <CloudIcon width={30} height={30} fill={"#ffffff"} />
             </div>
             <div className="card-info">
-              75%
-              <div className="card-info">Nubosidad</div>
+              {dataw.pressure} hPa
+              <div className="card-info">Pression</div>
             </div>
           </div>
         </div>
