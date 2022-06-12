@@ -10,7 +10,7 @@
 
 - [React JS](https://kit.svelte.dev/)
 
-- [Pure CSS](https://tailwindcss.com/)
+- [CSS](https://developer.mozilla.org/es/docs/Web/CSS)
 
 - [Testing Library](https://testing-library.com/)
 
