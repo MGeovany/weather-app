@@ -3,6 +3,7 @@
 
 - https://weather-app-psi-rouge.vercel.app/
 
+![1](https://i.ibb.co/jr9Bc77/1.png)
 ![2](https://i.ibb.co/jHph8kQ/3.png)
 ![3](https://i.ibb.co/BgFDHZQ/2.png)
 ## 🦾 Technologies
