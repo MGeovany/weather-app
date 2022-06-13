@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Weather } from "../types/Types";
 
+const APIKEYW = process.env.REACT_APP_WEATHER_KEY;
+
 export const useWeather = (location: string) => {
-  let urlWeather = `https://api.openweathermap.org/data/2.5/weather?appid=0b1d8dc54b4fbddf609cade05ca3f715&q=${location}&units=metric`;
+  let urlWeather = `https://api.openweathermap.org/data/2.5/weather?appid=${APIKEYW}&q=${location}&units=metric`;
   const [dataw, setDataw] = useState<Weather>({
     weather: [
       {

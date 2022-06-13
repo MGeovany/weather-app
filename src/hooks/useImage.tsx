@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ImageData } from "../types/Types";
 
-const APIKEY = "563492ad6f9170000100000150c842afe3da40caa139b858305be571";
+const APIKEY = process.env.REACT_APP_AUTH_KEY;
 
 const useImage = (city: string) => {
   const url = `https://api.pexels.com/v1/search?query=${city}`;
