@@ -49,8 +49,8 @@ export const Card = (city: any) => {
               <CloudIcon width={30} height={30} fill={"#ffffff"} />
             </div>
             <div className="card-info">
-              {dataw.main.pressure} hPa
-              <div className="card-info">Pression</div>
+              {Math.round(dataw.main.temp_max)} °C
+              <div className="card-info">Temp. Max</div>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ export const Home = () => {
             <Card city={"Tokyo"} />
             <Card city={"Londres"} />
             <Card city={"Sydney"} />
-            <Card city={"Nueva York"} />
+            <Card city={"New York City"} />
             <Card city={"Paris"} />
           </div>
     </div>

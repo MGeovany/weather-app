@@ -13,7 +13,7 @@ export interface WeatherData {
   temp_min: number;
   pressure: number;
   humidity: number;
-
+  temp_max: number;
   city: string;
 }
 

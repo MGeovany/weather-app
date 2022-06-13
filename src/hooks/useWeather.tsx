@@ -20,6 +20,7 @@ export const useWeather = (location: string) => {
       humidity: 0,
       temp_min: 0,
       city: "",
+      temp_max: 0,
     },
   });
 
