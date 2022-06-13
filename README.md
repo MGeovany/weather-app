@@ -1,8 +1,8 @@
 
 ## 🖥️ Preview
-```
-https://weather-app-psi-rouge.vercel.app/
-```
+
+- https://weather-app-psi-rouge.vercel.app/
+
 ![2](https://i.ibb.co/jHph8kQ/3.png)
 ![3](https://i.ibb.co/BgFDHZQ/2.png)
 ## 🦾 Technologies
