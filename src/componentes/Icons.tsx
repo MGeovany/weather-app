@@ -54,6 +54,12 @@ export const Icons = (props: any) => {
           <img src="/assets/cloud/29.png" alt="mist" />
         </div>
       );
+    case "overcast clouds":
+      return (
+        <div className="icons-icon">
+          <img src="/assets/cloud/35.png" alt="overcast" />
+        </div>
+      );
 
     default:
       return (
