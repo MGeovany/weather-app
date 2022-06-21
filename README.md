@@ -14,8 +14,6 @@
 
 - [Pure CSS](https://tailwindcss.com/)
 
-- [Testing Library](https://testing-library.com/)
-
 - [Vercel](https://vercel.com/)
 
   
@@ -52,5 +50,5 @@ Contributions, issues and feature requests are welcome!
 
 <br />
 
-Feel free to check [issues page](https://github.com/eriandev/weather-app/issues).
+Feel free to check [issues page](https://github.com/mgeovany/weather-app/issues).
 
